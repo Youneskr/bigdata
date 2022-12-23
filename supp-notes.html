@@ -1,0 +1,24 @@
+<script>
+
+    const urlParams = new URLSearchParams(window.location.search)
+    
+    const nom = urlParams.get('nom');
+    const prenom = urlParams.get('prenom');
+    
+    
+    
+    if (!confirm(`supprimer les notes de ${nom} ${prenom} ?`)) {
+        window.location.replace('/etudiants.html')
+    }
+    else {
+        fetch(`http://127.0.0.1:4000/api/notes/${nom}-${prenom}`, {
+            method: 'DELETE'
+        })
+        .then(response => response.json())
+        .then(data => {
+            window.location.replace('/etudiants.html')
+        })
+    }
+    
+    
+    </script>
